@@ -1,0 +1,40 @@
+Kanban2 Design Architecture
+
+A second implementation of Kanban
+
+The first implementation, the ill fated 'kanbanfordevelopers.com', was written in jQuery, Ruby on Rails, and MySQL backend. 
+
+This implementation uses Angular JS, Node JS, and SQLite3.
+
+
+Object Information:
+Users
+Boards
+Lanes
+Tasks
+
+Users:
+    id
+    name
+    email
+    
+Boards:
+    id
+    user_id
+    name
+    
+Lanes:
+    id
+    board_id
+    name
+    
+Tasks:
+    id
+    board_id
+    lane_id
+    title
+    description
+    <numerous other fields>
+    
+Thus, a user has multiple boards, boards have multiple (swim) lanes, and lanes have multiple tasks.
+

@@ -1,0 +1,16 @@
+Stories
+
+1) As a user, I want to add a kanban board so I can track a project's progress via the Kanban method.
+2) As a user, I want to add a swim lane to a board, so I can customize my kanban board.
+    (Allow a user to have 2 to 7 swim lanes)
+3) As a user, I want to delete a swim lane from a board, in case my process changes later.
+4) As a user, I want to name a swim lane, so I can give it contectual meaning.
+5) As a user, I want to re-name a swim lane, so I can change its meaning later.
+6) As a user, I want to see my kanban board with its configured swim lanes.
+7) As a user, I want to be add a task to my kanban board.
+    (Goes into the first swimlane)
+8) As a user, I want to be able to edit a task, so I may update information regarding it.
+9) As a user, I want to be able to delete a task, in case it has no value to me.
+10) As a user, I want to be able to move a task to a new swim lane, so I can show that its progress has changed.
+11) As a user, I want to be able to view my tasks on the kanban board.
+12) 
