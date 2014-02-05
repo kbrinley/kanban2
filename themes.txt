@@ -1,0 +1,10 @@
+Business Idea:
+
+While the Kanban2 project is initially an attempt to recreate the KanbanForDevelopers.com site in NodeJS and Angular, the thought came to me during Agile training that there are many tools that could be useful for doing agile with remote teams.
+
+Here's a list of 'Themes' that I think would be useful to breakdown further:
+    A Story writing/Mapping tool to work with remote members
+    An story estimating app to do 'Goal post' estimation
+    
+    
+While the Kanban board idea could work, I am only attempting it as a way to learn some new technologies and nothing more.
