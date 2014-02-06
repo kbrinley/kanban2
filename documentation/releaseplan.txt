@@ -8,31 +8,49 @@ Sprint 0:
     Goal: Provide the barebones architecture framework to further explore Git, Node JS, Angular, and other technologies.
     
     Stories:
-        1.1: Spike to research creation of a SQLite db from within NodeJS
+        --0.1: Spike to research creation of a SQLite db from within NodeJS
             AC: Create a database with a table, version, which I'll insert a record for each sprint
-        1.2: Integrate NodeJS, Bootstrap, and Angular JS
+            NOTE: app.js now has functions which creates a table. We can add to this function to build out the db structure if the tables do not exist.
+        --0.2: Integrate NodeJS, Bootstrap, and Angular JS
             As a developer, I want Bootstrap and Angular JS integrated in my layout.jade file so that it is available for coding.
-        1.3: Spike to learn Jade
+            NOTE: in index.jade, both Bootstrap and Angular JS are integrated as a demonstration, but both are available to all pages which extend layout.jade
+        0.3: Spike to learn Jade
             As a developer, I want to learn Jade so that I am more familiar with it when I need to use it in later stories.
             AC: Be able to create a more complex index page than the one provided
-        1.4: Spike to learn Node.Js and other requisite technologies
+        0.4: Spike to learn Node.Js and other requisite technologies
             As a developer, I want to learn NodeJS and Express (and any other backend technologies) so that when I am more familiar with it when I need to use it.
-        1.5: Spike to re-learn Angular JS
+        0.5: Spike to re-learn Angular JS
             As a developer, I want to learn Angular JS so that I am more familiar with it when I need to use it in later stories.
-        1.6: Spike to research other needed architecture items needed for the project.
+        0.6: Spike to research other needed architecture items needed for the project.
             As a developer, I want to research my architecture to determine if there are gaps that require another tool to integrate
+                Unit tests with Node JS & Angular?
             
 Sprint 1:
     March 1st through March 14th
     
-    Goal: 
+    Goal: Build out the man page of the app and to allow project level configuration.
     
     Stories:
-        2.1: 
-        2.2: 
-        2.3: 
+        1.1: As a user, I want to see my kanban board with its configured swim lanes.
+        1.2: As a user, I want to add a kanban board so I can track a project's progress via the Kanban method.
+        1.3: As a user, I want to add a swim lane to a board, so I can customize my kanban board.
         
 Sprint 2:
     March 15th through March 28th
     
+    Goal: Add further project level configuration by tweaking Swim lanes.
+    
+    Stories:
+        2.1: As a user, I want to delete a swim lane from a board, in case my process changes later.
+        2.2: As a user, I want to name a swim lane, so I can give it contectual meaning.
+        2.3: As a user, I want to re-name a swim lane, so I can change its meaning later.
+    
 Sprint 3:
+    March 29th trhough April x
+    
+    Goal: Allow users to add, edit, and delete tasks.
+    
+    Stories:
+        3.1: As a user, I want to be add a task to my kanban board.
+        3.2: As a user, I want to be able to edit a task, so I may update information regarding it.
+        3.3: As a user, I want to be able to delete a task, in case it has no value to me.
