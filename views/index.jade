@@ -1,14 +1,39 @@
 extends layout
 
 block content
-  nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
-    div.navbar-header
-      a.navbar-brand(href='#/index')= title
-  // Use = only when setting the value of text to the value in a variable.
-  h1= title
-  p Welcome to #{title}
-  div
-    label Name:
-    input(type='text', ng-model='yourName', placeholder='Enter a name here')
-    hr
-    h2 Hello {{yourName}}!
+  script(src='/javascripts/controllers.js')
+  body(ng-controller='IndexPageCtrl')
+    nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      div.navbar-header
+        a.navbar-brand(href='#/index')= title
+    // Use = only when setting the value of text to the value in a variable.
+    h1= title
+    p Welcome to #{title}
+    div
+      label Name:
+      input(type='text', ng-model='yourName', placeholder='Enter a name here')
+      hr
+      h2 Hello {{yourName}}!
+    div.panel
+      div.well
+        label User Object Name:
+        input(type='text', ng-model='userObject.name')
+        hr
+        h2 Hello {{userObject.name}}
+      div.well
+        label User Object Email:
+        input(type='email', ng-model='userObject.email')
+      div.well
+        label User Object Age:
+        input(type='number', ng-model='userObject.age')
+      div.well
+        label User Object Title:
+        input(type='text', ng-model='userObject.title')
+    div.panel
+      h3 User Object:
+      // In order for this to work with a variable set in the controller, both ng-app and ng-controller must be set
+      div Name: {{userObject.name}}
+      div Email: {{userObject.email}}
+      div Age: {{userObject.age}}
+      div Title: {{userObject.title}}
+    
