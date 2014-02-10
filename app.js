@@ -64,6 +64,7 @@
 
     //app.get('/', routes.index);
     app.get('/angular', angular.angular);
+    app.get('/ng', angular.ng);
     app.get('/partials/:name', routes.partials);
     app.get('/users', user.list);
     app.get('/kanban', kanban.board);

@@ -8,4 +8,7 @@
     exports.angular = function (req, res) {
         res.render('angular', { title: 'Angular Test' });
     };
+    exports.ng = function (req, res) {
+        res.render('ng', { title: 'Angular/Node Test' });
+    };
 }());
