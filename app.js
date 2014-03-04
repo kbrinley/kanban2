@@ -6,6 +6,7 @@
     function createTables() {
         console.log('Create Tables in SQLite3 database if needed');
         db.run("CREATE TABLE IF NOT EXISTS versions (version TEXT)", insertRows);
+        db.run("CREATE TABLE IF NOT EXISTS boards (id INTEGER, user_id INTEGER, name TEXT, swimlanes INTEGER)", insertBoard);
     }
 
     function insertRows() {
@@ -27,8 +28,23 @@
      });
     }
 
-
-
+    function insertBoard() {
+        console.log("Query for existing boards");
+        db.all("SELECT id from boards", function(err, rows) {
+            console.log("Checking for existing record");
+            if (rows.length === 0)
+            {
+                // Insert record.
+                console.log("No existing record found. Creating basic record");
+                db.run("INSERT INTO boards VALUES($id, $user_id, $name, $swimlanes)", {
+                    $id: 1,
+                    $user_id: 1,
+                    $name: 'Example',
+                    $swimlanes: 3
+                });
+            }
+        });
+    }
     /**
      * Module dependencies.
      */
@@ -68,6 +84,7 @@
     app.get('/partials/:name', routes.partials);
     app.get('/users', user.list);
     app.get('/kanban', kanban.board);
+    app.get('/board/:id', kanban.getBoard);
 
     http.createServer(app).listen(app.get('port'), function(){
       console.log('Express server listening on port ' + app.get('port'));

@@ -17,9 +17,9 @@ Sprint 0:
         0.3: Spike to learn Jade
             As a developer, I want to learn Jade so that I am more familiar with it when I need to use it in later stories.
             AC: Be able to create a more complex index page than the one provided
-        0.4: Spike to learn Node.Js and other requisite technologies
+        --0.4: Spike to learn Node.Js and other requisite technologies
             As a developer, I want to learn NodeJS and Express (and any other backend technologies) so that when I am more familiar with it when I need to use it.
-        0.5: Spike to re-learn Angular JS
+        --0.5: Spike to re-learn Angular JS
             As a developer, I want to learn Angular JS so that I am more familiar with it when I need to use it in later stories.
         0.6: Spike to research other needed architecture items needed for the project.
             As a developer, I want to research my architecture to determine if there are gaps that require another tool to integrate
@@ -31,6 +31,8 @@ Sprint 1:
     Goal: Build out the man page of the app and to allow project level configuration.
     
     Stories:
+        0.3: Spike to learn Jade
+        0.6: Spike to research other needed architecture items needed for the project.
         1.1: As a user, I want to see my kanban board with its configured swim lanes.
         1.2: As a user, I want to add a kanban board so I can track a project's progress via the Kanban method.
         1.3: As a user, I want to add a swim lane to a board, so I can customize my kanban board.
