@@ -7,7 +7,7 @@
         res.render('board', { title: 'Express' });
     };
 
-    /**  GET: /boards/:id  **/
+    /**  GET: /api/board/:id  **/
     exports.getBoard = function(req, res) {
         var sqlite = require('sqlite3');
         var db = new sqlite.Database('kanban');
@@ -21,5 +21,23 @@
             db.close();
             res.send(obj);
         });
+    };
+    
+    /**  POST: /api/board/:id  **/
+    exports.insertBoard = function(req, res) {
+        var sqlite = require('sqlite3');
+        var db = new sqlite.Database('kanban');
+
+        var boardId = req.params.id;
+    };
+    
+    /**  UPDATE: /api/board/:id  **/
+    exports.updateBoard = function(req, res) {
+        
+    };
+    
+    /**  DELETE: /api/board/:id  **/
+    exports.deleteBoard = function(req, res) {
+        
     };
 }());

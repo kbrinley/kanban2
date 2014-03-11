@@ -3,7 +3,7 @@
 var kanbanApp = angular.module('kanbanApp', ['ngResource', 'ngRoute'])
     .config(function($routeProvider, $locationProvider) {
         // Full route is /angular#/ - giving an app/templates/ for url points to a Angular templated html file.
-        $routeProvider.when('/',
+        /*$routeProvider.when('/',
         {
             //template: 'Hello World!',
             templateUrl: 'app/templates/angular.html',
@@ -14,6 +14,11 @@ var kanbanApp = angular.module('kanbanApp', ['ngResource', 'ngRoute'])
         {
             templateUrl: 'ng',
             controller: 'NgTestController'
+        });*/
+        $routeProvider.when('/', 
+        {
+            templateUrl: 'kanban',
+            controller: 'KanbanController'
         });
     });
 //    .factory('cache', function($cacheFactory) {

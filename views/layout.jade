@@ -1,5 +1,5 @@
 doctype html
-html(lang='en', ng-app='indexPage')
+html(lang='en', ng-app='kanbanApp')
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
@@ -7,4 +7,8 @@ html(lang='en', ng-app='indexPage')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular-resource.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular-route.min.js')
+    script(src='/app/js/app.js')
+    script(src='/app/js/controllers/KanbanController.js')
+    script(src='/app/js/services/board.js')
+    script(src='/app/js/services/containersData.js')
   block content

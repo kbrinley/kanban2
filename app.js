@@ -7,6 +7,7 @@
         console.log('Create Tables in SQLite3 database if needed');
         db.run("CREATE TABLE IF NOT EXISTS versions (version TEXT)", insertRows);
         db.run("CREATE TABLE IF NOT EXISTS boards (id INTEGER, user_id INTEGER, name TEXT, swimlanes INTEGER)", insertBoard);
+        db.run("CREATE TABLE IF NOT EXISTS containers (container_id INTEGER, board_id INTEGER, title TEXT, wip INTEGER)", insertContainers);
     }
 
     function insertRows() {
@@ -45,6 +46,36 @@
             }
         });
     }
+    
+    function insertContainers() {
+        console.log("Query for existing containers");
+        db.all("SELECT board_id from containers", function(err, rows) {
+            console.log("Checking for existing record");
+            if (rows.length === 0)
+            {
+                // Insert record.
+                console.log("No existing record found. Creating basic record");
+                db.run("INSERT INTO containers VALUES($id, $board_id, $title, $wip)", {
+                    $id: 1,
+                    $board_id: 1,
+                    $title: 'Not Started',
+                    $wip: -1
+                });
+                db.run("INSERT INTO containers VALUES($id, $board_id, $title, $wip)", {
+                    $id: 2,
+                    $board_id: 1,
+                    $title: 'In Progress',
+                    $wip: 3
+                });
+                db.run("INSERT INTO containers VALUES($id, $board_id, $title, $wip)", {
+                    $id: 3,
+                    $board_id: 1,
+                    $title: 'Complete',
+                    $wip: -1
+                });
+            }
+        });
+    }
     /**
      * Module dependencies.
      */
@@ -53,6 +84,7 @@
         routes = require('./routes'),
         user = require('./routes/user'),
         kanban = require('./routes/kanban'),
+        container = require('./routes/containers'),
         angular = require('./routes/angular'),
         http = require('http'),
         path = require('path'),
@@ -84,7 +116,20 @@
     app.get('/partials/:name', routes.partials);
     app.get('/users', user.list);
     app.get('/kanban', kanban.board);
-    app.get('/board/:id', kanban.getBoard);
+    
+    /** API calls **/
+    // board
+    app.get('/api/board/:id', kanban.getBoard);
+    app.post('/api/board/:id', kanban.insertBoard);
+    app.delete('/api/board/:id', kanban.deleteBoard);
+    app.put('/api/board/:id', kanban.updateBoard);
+    // containers
+    app.get('/api/containers/:id', container.getContainers); // id refers to board_id, not container_id
+    // container
+    app.get('/api/container/:id', container.getContainer);
+    app.post('/api/container/:id', container.insertContainer);
+    app.delete('/api/container/:id', container.deleteContainer);
+    app.put('/api/container/:id', container.updateContainer);
 
     http.createServer(app).listen(app.get('port'), function(){
       console.log('Express server listening on port ' + app.get('port'));

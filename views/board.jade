@@ -1,25 +1,25 @@
 extends layout
 
 block content
-  body
+  body(ng-controller='KanbanController')
     h1= title
     p Kanban Board
     div.board.container-fluid
       header.row
         div.board-title.col-md-4
-          h2 Name
+          h2 {{board.name}}
         div.board-buttons.col-md-4.col-md-offset-4
           button.btn-lg.btn-primary Add Task
           button.btn-lg.btn-default Configure Board
       div.board-body.row
-        div.board-container.col-md-4
-          h3 Container Name 1
+        div.board-container.col-md-4(ng-repeat='c in containers')
+          h3 {{c.title}}
           div.board-container-body
-        div.board-container.col-md-4
-          h3 Container Name 2
-          div.board-container-body
-        div.board-container.col-md-4
-          h3 Container Name 3
-          div.board-container-body
+        //div.board-container.col-md-4
+        //  h3 Container Name 2
+        //  div.board-container-body
+        //div.board-container.col-md-4
+        //  h3 Container Name 3
+        //  div.board-container-body
       footer x Tasks
     footer SandBridge Software, Copyright 2014
