@@ -8,18 +8,16 @@ block content
       header.row
         div.board-title.col-md-4
           h2 {{board.name}}
-        div.board-buttons.col-md-4.col-md-offset-4
+        div.board-buttons.col-md-6.col-md-offset-2
           button.btn-lg.btn-primary Add Task
           button.btn-lg.btn-default Configure Board
+          button.btn-lg(ng-click='insertContainer(-1, "My Test Container", 1, 3)') Add Container
       div.board-body.row
-        div.board-container.col-md-4(ng-repeat='c in containers')
-          h3 {{c.title}}
+        div.board-container.col-md-3(ng-repeat='c in containers')
+          h3
+            span {{c.container_id}}
+            span(editable-text='c.title', onbeforesave='updateContainerTitle(c.container_id, $data, c.board_id, c.wip)') {{c.title}}
+            button.btn-sm(ng-click='deleteContainer(c.container_id)') X
           div.board-container-body
-        //div.board-container.col-md-4
-        //  h3 Container Name 2
-        //  div.board-container-body
-        //div.board-container.col-md-4
-        //  h3 Container Name 3
-        //  div.board-container-body
       footer x Tasks
     footer SandBridge Software, Copyright 2014

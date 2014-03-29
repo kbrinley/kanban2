@@ -2,7 +2,7 @@
 (function () {
     "use strict";
    // Containers: (container_id INTEGER, board_id INTEGER, title TEXT, wip INTEGER)
-    
+    var c = require('./../models/Container');
     
     /**  GET: /api/containers/:id  **/
     exports.getContainers = function(req, res) {
@@ -42,19 +42,50 @@
     
      /**  POST: /api/container/:id  **/
     exports.insertContainer = function(req, res) {
-        var sqlite = require('sqlite3');
-        var db = new sqlite.Database('kanban');
-
-        var boardId = req.params.id;
+        var newTitle = req.body.title;
+        
+        var container = new c.Container();
+        
+        container.container_id = req.params.id;
+        // Don't set value if it isn't present.
+        if (req.body.title)
+            container.title = req.body.title;
+        if (req.body.board_id)
+            container.board_id = req.body.board_id;
+        if (req.body.wip)
+            container.wip = req.body.wip;
+        
+        container.Insert();
+        
+        res.send();
     };
     
     /**  PUT: /api/container/:id  **/
     exports.updateContainer = function(req, res) {
+
+        var newTitle = req.body.title;
         
+        var container = new c.Container();
+        container.container_id = req.params.id;
+        // Don't set value if it isn't present.
+        if (req.body.title)
+            container.title = req.body.title;
+        if (req.body.board_id)
+            container.board_id = req.body.board_id;
+        if (req.body.wip)
+            container.wip = req.body.wip;
+        
+        container.Update();
+        
+        res.send();
     };
     
     /**  DELETE: /api/container/:id  **/
     exports.deleteContainer = function(req, res) {
+        var container = new c.Container();
+        container.container_id = req.params.id;
+        container.Delete();
         
+        res.send();
     };
 }());

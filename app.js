@@ -6,19 +6,28 @@
     function createTables() {
         console.log('Create Tables in SQLite3 database if needed');
         db.run("CREATE TABLE IF NOT EXISTS versions (version TEXT)", insertRows);
+        queryDB();
         db.run("CREATE TABLE IF NOT EXISTS boards (id INTEGER, user_id INTEGER, name TEXT, swimlanes INTEGER)", insertBoard);
         db.run("CREATE TABLE IF NOT EXISTS containers (container_id INTEGER, board_id INTEGER, title TEXT, wip INTEGER)", insertContainers);
+        testHarness();
+        console.log('Database Update Complete');
     }
 
     function insertRows() {
-     // Need to only insert if row doesn't currently exist.
-
-        console.log("Insert Rows for Sprint 0");
-        var stmt = db.prepare("INSERT INTO versions VALUES (?)");
-
-        stmt.run("Sprint 0");
-
-        stmt.finalize(queryDB);
+        // Need to only insert if row doesn't currently exist.
+        //var sprint0func = 
+        db.all("SELECT version from versions where version == 'Sprint 0'", handleVersionsInsert("Sprint 0"));
+    }
+    
+    function handleVersionsInsert(versionName) {
+        return function(err, rows) {
+            console.log("Checking for " + versionName + " : " + rows);
+            if (rows.length === 0) {
+                db.run("INSERT INTO versions VALUES($text)", {
+                    $text: versionName
+                });
+            }
+        }
     }
 
     function queryDB() {
@@ -76,6 +85,22 @@
             }
         });
     }
+    
+    function testHarness() {
+        // Enable or repurpose for testing
+        console.log("Query for existing container id 2");
+        //db.all("SELECT container_id, board_id, title, wip from containers WHERE container_id = 2", function(err, rows) {
+        db.all("SELECT MAX(container_id) as new_id from containers", function(err, rows) {
+            console.log("Checking for record");
+            if (rows.length === 1) {
+                rows.forEach(function(row) {
+                    //console.log(row.container_id + ": " + row.board_id + " : " + row.title + " : " + row.wip);
+                    console.log(row.new_id);
+                });
+            }
+        });
+    }
+    
     /**
      * Module dependencies.
      */

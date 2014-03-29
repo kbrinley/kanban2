@@ -40,19 +40,44 @@ Sprint 1:
 Sprint 2:
     March 15th through March 28th
     
-    Goal: Add further project level configuration by tweaking Swim lanes.
+    Goal: Build out the man page of the app and to allow project level configuration.
     
     Stories:
-        2.1: As a user, I want to delete a swim lane from a board, in case my process changes later.
-        2.2: As a user, I want to name a swim lane, so I can give it contectual meaning.
-        2.3: As a user, I want to re-name a swim lane, so I can change its meaning later.
+        0.3: Spike to learn Jade
+        0.6: Spike to research other needed architecture items needed for the project.
+        --1.1: As a user, I want to see my kanban board with its configured swim lanes.--
+        1.2: As a user, I want to add a kanban board so I can track a project's progress via the Kanban method.
+        --1.3: As a user, I want to add a swim lane to a board, so I can customize my kanban board.--
+        --2.1: As a user, I want to delete a swim lane from a board, in case my process changes later.--
+        --2.2: As a user, I want to name a swim lane, so I can give it contectual meaning.--
+        --2.3: As a user, I want to re-name a swim lane, so I can change its meaning later.--
     
 Sprint 3:
-    March 29th trhough April x
+    March 29th trhough April 11th
     
-    Goal: Allow users to add, edit, and delete tasks.
+    Goal: Complete preparatory research and to 
+    
+    Stories:
+        0.3: Spike to learn Jade
+        0.6: Spike to research other needed architecture items needed for the project.
+        1.4: As a user, I want to be able to see a list of my Boards.
+        1.5: As a user, I want to be able to name and re-name my Boards.
+        1.2: As a user, I want to add a kanban board so I can track a project's progress via the Kanban method.
+        1.6: As a user, I want the Boards 'swimlanes' counter to be incremented each time a container is added or removed.
+    
+Sprint 4:
+    April 11th through April 25th
+    
+    Goal: Add further project level configuration by tweaking Swim lanes.
     
     Stories:
         3.1: As a user, I want to be add a task to my kanban board.
         3.2: As a user, I want to be able to edit a task, so I may update information regarding it.
         3.3: As a user, I want to be able to delete a task, in case it has no value to me.
+    
+Sprint 5:
+    April 25th through May X
+    
+    Goal: Allow users to add, edit, and delete tasks.
+    
+    Stories:

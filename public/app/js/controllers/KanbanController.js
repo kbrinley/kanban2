@@ -1,7 +1,7 @@
 'use strict';
 
 kanbanApp.controller('KanbanController',
-    function KanbanController($scope, boardData, containersData) {
+    function KanbanController($scope, boardData, containersData, $http) {
         var boardId = 1;
         
         console.log("KanbanController!");
@@ -17,6 +17,17 @@ kanbanApp.controller('KanbanController',
             console.log("Containers: " + containers);
             $scope.containers = containers; 
         });
+        
+        $scope.updateContainerTitle = function(id, data, board_id, wip) {
+            return $http.put('/api/container/' + id, {title: data, board_id: board_id, wip: wip});
+        };
+        $scope.insertContainer = function(id, data, board_id, wip) {
+            return $http.post('/api/container/' + id, {title: data, board_id: board_id, wip: wip});
+        };
+        $scope.deleteContainer = function(id) {
+            return $http.delete('/api/container/' + id);  
+        };
+        
         /*$scope.containers = 
             [{
                 "container_id": -1,
