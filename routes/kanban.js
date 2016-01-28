@@ -1,25 +1,24 @@
 /*global exports*/
 (function () {
     "use strict";
+    
+    var b = require('./../models/Board');
 
     /**  GET: /kanban  **/
     exports.board = function (req, res) {
         res.render('board', { title: 'Express' });
     };
+    
+    exports.addTask = function (req, res) {
+        res.render('addTask', { title: 'Add Task'});  
+    };
 
     /**  GET: /api/board/:id  **/
     exports.getBoard = function(req, res) {
-        var sqlite = require('sqlite3');
-        var db = new sqlite.Database('kanban');
+        b.GetBoard(req.params.id).then(function(board) {
+            console.log(board.name);
 
-        var boardId = req.params.id;
-        var obj = {};
-        db.get("SELECT id, user_id, name, swimlanes from boards where id = ?", boardId, function(err, row) {
-            console.log("Got row: " + row);
-            if (err) throw err;
-            if (row) obj = row;
-            db.close();
-            res.send(obj);
+            res.send(board);
         });
     };
     
@@ -31,9 +30,22 @@
         var boardId = req.params.id;
     };
     
-    /**  UPDATE: /api/board/:id  **/
+    /**  PUT: /api/board/:id  **/
     exports.updateBoard = function(req, res) {
+        var sqlite = require('sqlite3');
+        var db = new sqlite.Database('kanban');
         
+        var boardId = req.params.id;
+        var boardName = 'Default';
+        if (req.body.name)
+            boardName = req.body.name;
+        
+        db.run("UPDATE boards SET name = $name WHERE id = $id", {
+            $name: boardName,
+            $id: boardId
+        });
+        db.close();
+        res.send();
     };
     
     /**  DELETE: /api/board/:id  **/

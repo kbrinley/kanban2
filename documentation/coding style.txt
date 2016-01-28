@@ -1,0 +1,8 @@
+Style Guide
+
+Backend/NodeJS naming conventions
+    Backend JS Model files begin with a Capital letter
+    
+    
+Frontend/AngularJS naming conventions
+    Frontend JS files begin with a lower case letter

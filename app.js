@@ -9,7 +9,7 @@
         queryDB();
         db.run("CREATE TABLE IF NOT EXISTS boards (id INTEGER, user_id INTEGER, name TEXT, swimlanes INTEGER)", insertBoard);
         db.run("CREATE TABLE IF NOT EXISTS containers (container_id INTEGER, board_id INTEGER, title TEXT, wip INTEGER)", insertContainers);
-        testHarness();
+        db.run("CREATE TABLE IF NOT EXISTS tasks (task_id INTEGER, board_id INTEGER, container_id INTEGER, parent_id INTEGER, title TEXT, type INTEGER, description TEXT, created DATETIME, creator INTEGER, updated DATETIME, owner_id INTEGER, completed DATETIME)", testHarness());
         console.log('Database Update Complete');
     }
 
@@ -110,7 +110,9 @@
         user = require('./routes/user'),
         kanban = require('./routes/kanban'),
         container = require('./routes/containers'),
+        task = require('./routes/tasks'),
         angular = require('./routes/angular'),
+        index = require('./routes/index'),
         http = require('http'),
         path = require('path'),
         sqlite = require('sqlite3'),
@@ -135,12 +137,15 @@
       app.use(express.errorHandler());
     }
 
+    app.get('/tests', index.tests);
+    
     //app.get('/', routes.index);
     app.get('/angular', angular.angular);
     app.get('/ng', angular.ng);
     app.get('/partials/:name', routes.partials);
     app.get('/users', user.list);
     app.get('/kanban', kanban.board);
+    app.get('/addtask', kanban.addTask);
     
     /** API calls **/
     // board
@@ -155,6 +160,13 @@
     app.post('/api/container/:id', container.insertContainer);
     app.delete('/api/container/:id', container.deleteContainer);
     app.put('/api/container/:id', container.updateContainer);
+    // task
+    app.get('/api/task/:id', task.getTaskById);
+    app.get('/api/task/container/:id', task.getTasksByContainerId);
+    app.post('/api/task/:id', task.insertTask);
+    app.delete('/api/task/:id', task.deleteTask);
+    app.put('/api/task/:id', task.updateTask);
+    
 
     http.createServer(app).listen(app.get('port'), function(){
       console.log('Express server listening on port ' + app.get('port'));

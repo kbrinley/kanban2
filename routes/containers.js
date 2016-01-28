@@ -3,6 +3,7 @@
     "use strict";
    // Containers: (container_id INTEGER, board_id INTEGER, title TEXT, wip INTEGER)
     var c = require('./../models/Container');
+    var t = require('./../models/Task');
     
     /**  GET: /api/containers/:id  **/
     exports.getContainers = function(req, res) {
@@ -17,7 +18,11 @@
             var obj = new Array();
             rows.forEach(function (row) {
                 console.log(row.container_id + ": " + row.title);
-                obj.push(row);
+                //t.GetTasksByContainerId(row.container_id).then(function(tasks) {
+                //    row.tasks = tasks;
+                //    console.log("row.tasks: " + row.tasks.length);
+                    obj.push(row);
+                //});
             });
             db.close();
             res.send(obj);
@@ -42,8 +47,6 @@
     
      /**  POST: /api/container/:id  **/
     exports.insertContainer = function(req, res) {
-        var newTitle = req.body.title;
-        
         var container = new c.Container();
         
         container.container_id = req.params.id;
@@ -82,10 +85,14 @@
     
     /**  DELETE: /api/container/:id  **/
     exports.deleteContainer = function(req, res) {
-        var container = new c.Container();
-        container.container_id = req.params.id;
-        container.Delete();
-        
-        res.send();
+        //var container = new c.Container();
+        //container.container_id = req.params.id;
+        c.GetContainer(req.params.id).then(function(container) {
+            console.log(container.title);
+
+            container.Delete();
+
+            res.send();
+        });
     };
 }());

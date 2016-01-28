@@ -19,4 +19,9 @@
       if(!filename) return;
       res.render("partials/" + filename);
     };
+    
+    exports.tests = function (req, res) {
+        res.render('tests', { title: 'QUnit Tests' });
+    };
+
 }());

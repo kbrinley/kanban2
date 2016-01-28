@@ -20,6 +20,33 @@
         return this;
     };
     
+    var GetContainer = function(id) {
+        var self = this;
+        var sqlite = require('sqlite3');
+        var db = new sqlite.Database('kanban');
+        
+        var deferred = Q.defer();
+        
+        var obj = new Container();
+        
+        db.get("SELECT container_id, board_id, title, wip from containers where container_id = ?", id, function(err, row) { 
+            var rv;
+            if (err) deferred.reject(err);
+            if (row) 
+            {
+                obj.container_id = row.container_id;
+                obj.board_id = row.board_id;
+                obj.title = row.title;
+                obj.wip = row.wip;
+            }
+            db.close();
+            console.log(obj);
+            deferred.resolve(obj);
+        });
+        
+        return deferred.promise;
+    };
+    
     Container.prototype.Insert = function() {
         var self = this;
         var sqlite = require('sqlite3');
@@ -39,6 +66,9 @@
                         $title: self.title,
                         $wip: self.wip
                     });
+                    db.run("UPDATE boards SET swimlanes = swimlanes + 1 WHERE id = $board_id", {
+                        $board_id: self.board_id
+                    });
                     db.close();
                 });
         }
@@ -49,6 +79,9 @@
                 $board_id: self.board_id,
                 $title: self.title,
                 $wip: self.wip
+            });
+            db.run("UPDATE boards SET swimlanes = swimlanes + 1 WHERE id = $board_id", {
+                $board_id: self.board_id
             });
             db.close();
         }
@@ -74,6 +107,10 @@
         
         db.run("DELETE FROM containers WHERE container_id = $id", {
             $id: self.container_id
+        });
+        console.log("DELETE: board_id = " + self.board_id);
+        db.run("UPDATE boards SET swimlanes = swimlanes - 1 WHERE id = $board_id", {
+            $board_id: self.board_id
         });
         db.close();
     };
@@ -116,4 +153,5 @@
     }
     
     exports.Container = Container;
+    exports.GetContainer = GetContainer;
 })();

@@ -58,8 +58,10 @@ Sprint 3:
     Goal: Complete preparatory research and to 
     
     Stories:
-        0.3: Spike to learn Jade
-        0.6: Spike to research other needed architecture items needed for the project.
+        --0.3: Spike to learn Jade--
+        --0.6: Spike to research other needed architecture items needed for the project.--
+            Need a Promise framework (using q - https://github.com/kriskowal/q) to deal with the async nature of the Sqlite code.
+            Need a unit test framework
         1.4: As a user, I want to be able to see a list of my Boards.
         1.5: As a user, I want to be able to name and re-name my Boards.
         1.2: As a user, I want to add a kanban board so I can track a project's progress via the Kanban method.
@@ -70,14 +72,46 @@ Sprint 4:
     
     Goal: Add further project level configuration by tweaking Swim lanes.
     
-    Stories:
+    Stories:        
         3.1: As a user, I want to be add a task to my kanban board.
         3.2: As a user, I want to be able to edit a task, so I may update information regarding it.
         3.3: As a user, I want to be able to delete a task, in case it has no value to me.
     
 Sprint 5:
-    April 25th through May X
+    April 25th through May 9th
+    
+    Goal: Rename a Board and keep track of # of swim lanes
+    
+    Stories:
+        --1.5: As a user, I want to be able to name and re-name my Boards.--
+        --1.6: As a user, I want the Boards 'swimlanes' counter to be incremented each time a container is added or removed.--
+        2.1: As a developer, I want a board model so that the node.js API calls do not have to worry about talking to the database.
+        2.2: As a developer, I want a task model so that the node.js API calls do not have to worry about talking to the database.
+    
+Sprint 6:
+    May 9th through May 23rd
+    
+    Goal: Allow users to have multiple boards and manage them
+    
+    Stories
+        1.2: As a user, I want to add a kanban board so I can track a project's progress via the Kanban method.
+        1.4: As a user, I want to be able to see a list of my Boards.
+        
+        
+Sprint 7:
+    May 23rd through June X
+
+    Goal: Allow users to add, edit, and delete tasks.
+    
+    Stories:
+       
+        
+Sprint 8:
+    June X trhough June Y
     
     Goal: Allow users to add, edit, and delete tasks.
     
     Stories:
+        3.1: As a user, I want to be add a task to my kanban board.
+        3.2: As a user, I want to be able to edit a task, so I may update information regarding it.
+        3.3: As a user, I want to be able to delete a task, in case it has no value to me.

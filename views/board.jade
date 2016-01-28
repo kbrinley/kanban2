@@ -9,15 +9,43 @@ block content
         div.board-title.col-md-4
           h2 {{board.name}}
         div.board-buttons.col-md-6.col-md-offset-2
-          button.btn-lg.btn-primary Add Task
-          button.btn-lg.btn-default Configure Board
+          button.btn-lg.btn-primary(ng-click='addTask()') Add Task
+          button.btn-lg.btn-default(ng-click='configureBoard()') Configure Board
           button.btn-lg(ng-click='insertContainer(-1, "My Test Container", 1, 3)') Add Container
       div.board-body.row
         div.board-container.col-md-3(ng-repeat='c in containers')
-          h3
-            span {{c.container_id}}
-            span(editable-text='c.title', onbeforesave='updateContainerTitle(c.container_id, $data, c.board_id, c.wip)') {{c.title}}
-            button.btn-sm(ng-click='deleteContainer(c.container_id)') X
+          h3.board-containter-title.row
+            div.col-md-9(editable-text='c.title', onbeforesave='updateContainerTitle(c.container_id, $data, c.board_id, c.wip)') {{c.title}}
+            div.col-md-2.col-md-offset-1
+              button.btn-sm(ng-click='deleteContainer(c.container_id)')
+                span.glyphicon.glyphicon-trash
           div.board-container-body
-      footer x Tasks
+            div.task(ng-repeat='t in c.tasks')
+              div.task-title.col-md-9 {{t.title}}
+              div.col-md-2.col-md-offset-1
+                button.btn-sm(ng-click='editTask(t)')
+                  span.glyphicon.glyphicon-pencil
+      modal-dialog(show='modalShown', width='70%', height='70%')
+        form(name='configureBoard')
+          fieldset
+            label(for='boardName') Board Name:
+            input#boardName(type='text', required=true, ng-model='board.name', form-focus='configureBoardFocus')
+          button.btn.btn-primary(type='submit' ng-click='saveBoardConfig(board, configureBoard)') Save
+      modal-dialog(show='addTaskShown', width='70%', height='70%')
+        form(name='addTask', role='form')
+          fieldset
+            div.form-group
+              label(for='taskTitle') Title:
+              input.form-control#taskTitle(type='text', required=true, ng-model='task.title', form-focus='addTaskFocus')
+            div.form-group
+              label(for='taskDesc') Description:
+              textarea.form-control#taskDesc(ng-model='task.description')
+            div.form-group
+              label(for='taskType') Task Type:
+              select.form-control#taskType(ng-model='task.type')
+                option(value='1') Story
+                option(value='2') Defect
+          button.btn.btn-primary(type='submit' ng-click='editTask?editTheTask(task, addTask):addNewTask(task, addTask)') Save
+          button.btn(ng-click='deleteTask(task)', ng-show='editTask')
+            span.glyphicon.glyphicon-trash
     footer SandBridge Software, Copyright 2014

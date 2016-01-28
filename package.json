@@ -8,5 +8,8 @@
   "dependencies": {
     "express": "3.4.8",
     "jade": "*"
+  },
+  "devDependencies": {
+    "qunitjs": "~1.14.0"
   }
 }
